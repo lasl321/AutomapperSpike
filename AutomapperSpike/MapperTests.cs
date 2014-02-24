@@ -11,22 +11,27 @@ namespace AutomapperSpike
     [TestFixture]
     public class MapperTests
     {
+        private const int TestAge = 3321;
+        private const string TestName = "FooBar";
         private Mapper _mapper;
 
         [SetUp]
         public void SetUp()
         {
-            AMapper.Reset();
-            AMapper.CreateMap<Source, Destination>();
-            _mapper = new Mapper();
+            _mapper = new Mapper(new[] { new Profile() });
         }
 
         [Test]
         public void ShouldDoStuff()
         {
-            var destination = _mapper.Map<Destination>(new Source());
+            var destination = _mapper.Map<Destination>(new Source
+            {
+                Age = TestAge,
+                Name = TestName
+            });
 
-            Assert.That(destination, Is.InstanceOf<Destination>());
+            Assert.That(destination.Age, Is.EqualTo(TestAge));
+            Assert.That(destination.Name, Is.EqualTo(TestName));
         }
 
         class Source
@@ -39,6 +44,14 @@ namespace AutomapperSpike
         {
             public int Age { get; set; }
             public string Name { get; set; }
+        }
+
+        class Profile : AutoMapper.Profile
+        {
+            protected override void Configure()
+            {
+                AMapper.CreateMap<Source, Destination>();
+            }
         }
     }
 }
