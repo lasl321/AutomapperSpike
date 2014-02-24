@@ -57,7 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MissingPropertyTest.cs" />
-    <Compile Include="ExactMatchTests.cs" />
+    <Compile Include="ExactMatchTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
