@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using NUnit.Framework;
-using AutoMapper;
+using AMapper = AutoMapper.Mapper;
 
 namespace AutomapperSpike
 {
@@ -23,17 +23,17 @@ namespace AutomapperSpike
         [SetUp]
         public void SetUp()
         {
-            Mapper.Reset();
-            Mapper.CreateMap<Source, Destination>();
+            AMapper.Reset();
+            AMapper.CreateMap<Source, Destination>();
         }
 
         [Test]
-        [ExpectedException(typeof(AutoMapperConfigurationException), 
+        [ExpectedException(typeof(AutoMapper.AutoMapperConfigurationException), 
             ExpectedMessage = "Unmapped members were found", 
             MatchType = MessageMatch.Contains)]
         public void ShouldThrowException()
         {
-            Mapper.AssertConfigurationIsValid();
+            AMapper.AssertConfigurationIsValid();
         }
     }
 

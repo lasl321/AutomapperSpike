@@ -56,6 +56,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Mapper.cs" />
+    <Compile Include="MapperTests.cs" />
     <Compile Include="MissingPropertyTest.cs" />
     <Compile Include="ExactMatchTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

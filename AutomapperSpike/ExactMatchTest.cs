@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AMapper = AutoMapper.Mapper;
 
 namespace AutomapperSpike
 {
@@ -26,14 +27,14 @@ namespace AutomapperSpike
         [SetUp]
         public void SetUp()
         {
-            Mapper.Reset();
-            Mapper.CreateMap<Source, Destination>();
+            AMapper.Reset();
+            AMapper.CreateMap<Source, Destination>();
         }
 
         [Test]
         public void ShouldBeOk()
         {
-            Mapper.AssertConfigurationIsValid();
+            AMapper.AssertConfigurationIsValid();
         }
     }
 }
