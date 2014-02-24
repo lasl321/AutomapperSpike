@@ -1,40 +1,34 @@
-﻿using AutoMapper;
-using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AMapper = AutoMapper.Mapper;
+﻿using NUnit.Framework;
+using AutoMapperMapper = AutoMapper.Mapper;
 
 namespace AutomapperSpike
 {
     [TestFixture]
     public class ExactMatchTest
     {
-        class Source
+        [SetUp]
+        public void SetUp()
+        {
+            AutoMapperMapper.Reset();
+            AutoMapperMapper.CreateMap<Source, Destination>();
+        }
+
+        private class Source
         {
             public int Age { get; set; }
             public string Name { get; set; }
         }
 
-        class Destination
+        private class Destination
         {
             public int Age { get; set; }
             public string Name { get; set; }
-        }
-        
-        [SetUp]
-        public void SetUp()
-        {
-            AMapper.Reset();
-            AMapper.CreateMap<Source, Destination>();
         }
 
         [Test]
         public void ShouldBeOk()
         {
-            AMapper.AssertConfigurationIsValid();
+            AutoMapperMapper.AssertConfigurationIsValid();
         }
     }
 }

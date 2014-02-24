@@ -1,41 +1,36 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using AutoMapper;
 using NUnit.Framework;
-using AMapper = AutoMapper.Mapper;
+using AutoMapperMapper = AutoMapper.Mapper;
 
 namespace AutomapperSpike
 {
     public class MissingPropertyTest
     {
-        class Source
-        {
-            public int Age { get; set; }
-        }
-
-        class Destination
-        {
-            public string Name { get; set; }
-            public int ID { get; set; }
-        }
-
         [SetUp]
         public void SetUp()
         {
-            AMapper.Reset();
-            AMapper.CreateMap<Source, Destination>();
+            AutoMapperMapper.Reset();
+            AutoMapperMapper.CreateMap<Source, Destination>();
         }
 
         [Test]
-        [ExpectedException(typeof(AutoMapper.AutoMapperConfigurationException), 
-            ExpectedMessage = "Unmapped members were found", 
+        [ExpectedException(typeof (AutoMapperConfigurationException),
+            ExpectedMessage = "Unmapped members were found",
             MatchType = MessageMatch.Contains)]
         public void ShouldThrowException()
         {
-            AMapper.AssertConfigurationIsValid();
+            AutoMapperMapper.AssertConfigurationIsValid();
+        }
+
+        private class Destination
+        {
+            public string Name { get; set; }
+            public int Id { get; set; }
+        }
+
+        private class Source
+        {
+            public int Age { get; set; }
         }
     }
-
-
 }
