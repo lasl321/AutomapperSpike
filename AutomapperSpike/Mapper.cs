@@ -23,7 +23,7 @@ namespace AutomapperSpike
 
         public T Map<T>(object source)
         {
-            return (T)AutoMapper.Mapper.Map(source, source.GetType(), typeof(T));
+            return AutoMapper.Mapper.Map<T>(source);
         }
     }
 }
